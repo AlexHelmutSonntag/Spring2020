@@ -39,12 +39,12 @@ Factorial n = foldr (*) 1 [1..n]
 
 
 Decimalpart :: Real -> Real
-Decimalpart n = n - toReal (RoundD n)
+Decimalpart n = n - toReal (Round n)
 
 Start = Decimalpart 4.328438538// 0.328438538
 
-RoundD :: Real -> Int
-RoundD x
+Round :: Real -> Int
+Round x
 |toReal (toInt x) > x = (toInt x) - 1 
 |otherwise = (toInt x)
 
