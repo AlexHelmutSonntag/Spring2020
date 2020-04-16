@@ -26,6 +26,31 @@ fiblist = [fib i\\ i<-[1..]]
 
 //Start = fiblist
 
+
+//Factorial
+
+Factorial :: Int -> Int
+Factorial n = foldr (*) 1 [1..n]
+//Factorial n = prod[1..n]  // could be also this.
+//Start = Factorial 5
+
+//Start = foldr (\newElement list = [newElement*2] ++ list) [] [1..10]
+//Start = (\n= [2..(n-1)]) 8 // creates a list from 2..7
+
+
+Decimalpart :: Real -> Real
+Decimalpart n = n - toReal (RoundD n)
+
+Start = Decimalpart 4.328438538// 0.328438538
+
+RoundD :: Real -> Int
+RoundD x
+|toReal (toInt x) > x = (toInt x) - 1 
+|otherwise = (toInt x)
+
+//Start = Decimalpart 12.5 //0.5
+//Sorting
+
 //qsort 
 
 qsort :: [a] -> [a] | Ord a
@@ -35,7 +60,7 @@ qsort [c:xs] = qsort [x\\ x <-xs | x < c ] ++ [c] ++ qsort [x\\ x<-xs | x >= c]
 
 //Start = qsort [4,3,5,6,74,2]//[2,3,4,5,6,74]
 
-
+//merge
 
 merge :: [a] [a] -> [a] | Ord a
 merge [] ys = ys
@@ -46,6 +71,7 @@ merge [x:xs] [y:ys]
 
 //Start = merge [1,2,3,4] [5,6,7,8]
 
+//msort
 msort :: [a] -> [a] | Ord a 
 msort xs
 | len <= 1 = xs
