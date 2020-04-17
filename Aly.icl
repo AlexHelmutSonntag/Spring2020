@@ -73,7 +73,7 @@ isPrime x = and[x rem n <> 0\\n<- [2..(x-1)]]
 fib :: Int -> Int
 fib n
 | n <= 0 = abort "invalid"
-= fibAux n 1 1
+= fibAux n 0 1
 
 fibAux :: Int Int Int -> Int
 fibAux 1 a b = b
