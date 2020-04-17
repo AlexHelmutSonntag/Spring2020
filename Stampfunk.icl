@@ -7,6 +7,16 @@ isPrime :: Int -> Bool
 isPrime x = and[x rem n <> 0\\n<- [2..(x-1)]]
 
 
+//primeFactors
+
+primeFactors :: Int -> [Int]
+primeFactors n = [n \\ x<-[2..n] | isPrime x && n rem x == 0]
+
+Start = primeFactors 17
+
+
+
+
 //fib generator
 
 fib :: Int -> Int
