@@ -37,6 +37,11 @@ Factorial n = foldr (*) 1 [1..n]
 //Start = foldr (\newElement list = [newElement*2] ++ list) [] [1..10]
 //Start = (\n= [2..(n-1)]) 8 // creates a list from 2..7
 
+Negative :: Real -> Real
+Negative x
+| x < 0.0 = Decimalpart (abs x)
+= Decimalpart x
+
 
 Decimalpart :: Real -> Real
 Decimalpart n = n - toReal (Round n)
@@ -45,8 +50,12 @@ Decimalpart n = n - toReal (Round n)
 
 Round :: Real -> Int
 Round x
+| x < 0.0  = Round (abs x)
 |toReal (toInt x) > x = (toInt x) - 1 
 |otherwise = (toInt x)
+
+
+Start = Negative -12.5// 0.5
 
 //Start = Decimalpart 12.5 //0.5
 
