@@ -41,7 +41,7 @@ Factorial n = foldr (*) 1 [1..n]
 Decimalpart :: Real -> Real
 Decimalpart n = n - toReal (Round n)
 
-Start = Decimalpart 4.328438538// 0.328438538
+//Start = Decimalpart 4.328438538// 0.328438538
 
 Round :: Real -> Int
 Round x
@@ -49,6 +49,14 @@ Round x
 |otherwise = (toInt x)
 
 //Start = Decimalpart 12.5 //0.5
+
+//Converting a number into a list
+
+Numlist :: Int -> [Int]
+Numlist 0 = []
+Numlist x =  Numlist (x / 10) ++ [x rem 10] 
+
+//Start = Numlist 54321 // [5,4,3,2,1]
 //Sorting
 
 //qsort 
