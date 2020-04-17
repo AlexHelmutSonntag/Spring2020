@@ -76,6 +76,51 @@ Numlist 0 = []
 Numlist x =  Numlist (x / 10) ++ [x rem 10] 
 
 //Start = Numlist 54321 // [5,4,3,2,1]
+
+// Real no. Negative checker.
+isNegative :: Real -> Bool
+isNegative x
+| x < 0.0 = True
+= False
+
+// Real no. Positive checker.
+isPositive :: Real -> Bool
+isPositive x
+| x >= 0.0 = True
+= False
+
+//Start = isPositive 5.0// True
+
+// function that takes only positive numbers in a list.
+TakePositive :: [Real] -> [Real]
+TakePositive list = [i\\i<-list | isPositive i]
+
+//Start = TakePositive [1.0,-1.0,2.3,-3.9] // [1.0,2.3]
+
+// a function that does square root to a real no.
+root :: Real -> Real
+root x 
+| x == 0.0 = 0.0
+| x < 0.0 = abort "Invalid" 
+= x^(1.0/2.0)
+
+//Start = root 20.0//4.47213595499958
+
+//A function that square roots all the positive real no.s in a list.
+
+Square :: [Real] -> [Real]
+Square list = map root a 
+where
+    a = (filter (\x = isPositive x ) list)
+
+
+Start = Square [16.0,49.0,69.0,-120.0,1.0,-1.0,2.3,-3.9]//[1,1.51657508881031]
+
+
+
+/*
+-----------------------------------------------------------------------------------------------------------------------------
+*/
 //Sorting
 
 //qsort 
