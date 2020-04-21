@@ -120,3 +120,32 @@ int main()
  cout << counter;
 return 0;
 }
+
+#include <iostream>
+using namespace std;
+
+struct Date {
+  int month, day;
+};
+
+int main() {
+	int n;
+    cin >> n;
+    Date birth[n + 1];
+    
+    for (int i = 1; i <= n; i++) {
+        cin >> birth[i].month >> birth[i].day;
+    }
+    
+    int first = 1;
+    for (int i = 2; i <= n; i++) {
+        if (birth[i].month < birth[first].month ||
+            birth[i].month == birth[first].month
+            && birth[i].day < birth[first].day) {
+            first = i;
+        }
+    }
+    cout << "First birthday in year: " << birth[first].month
+         << " " << birth[first].day << ", person " << first;
+    return 0;
+}
