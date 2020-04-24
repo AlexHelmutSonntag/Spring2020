@@ -13,19 +13,18 @@ Note : order doesn't matter
 
 
 
-//Food :: [(String,String]
-Food :: [(String,String)] -> [String]
+Food :: [(String,String)] -> [String]//generated a list of fruits only 
 Food list = removeDup [b\\(a,b)<-list]
 
-People :: Int [(String,String)]-> [[String]]
+People :: Int [(String,String)]-> [[String]]// generated a list of people who share the same fav fruit. we iterated from x=0 up to the length of the array "list" using for loop concept where u check the 1st element of array whether it fits the element inside the tuple and if it it's correct, you take that name from the tuple and store it into a list. if you have two names, it adds them in a sub list as you can see using the [[list comprehension]] 
 People x list
 |x == (length (Food list)) = []
 = [[name\\(name,fruit)<-list | (Food list) !!x == fruit ]] ++ People (x+1) list
 
-combine:: [String] [[String]] -> [(String,[String])]
+combine:: [String] [[String]] -> [(String,[String])]//this one basically combined both of them. 
 combine list1 list2 = [(x,y)\\x<-list1 & y<-list2]
 
-favFood :: [(String,String)] -> [(String,[String])]
+favFood :: [(String,String)] -> [(String,[String])]//this is the one that got called where the list was used as both lists for combine
 favFood list = combine (Food list) (People 0 list)
 
 //Start = favFood [("Zuka", "apple"), ("Beka", "orange"), ("Emad", "pineapple"), ("Ahmed", "apple")]//[("apple",["Zuka","Ahmed"]),("orange",["Beka"]),("pineapple",["Emad"])]
@@ -50,16 +49,16 @@ Note : You can assume that the input for the gender will be "male", "female".
 */
 
 
-isGirl :: [(String,Int,String)] -> [(String,Int,String)] 
+isGirl :: [(String,Int,String)] -> [(String,Int,String)] //separated only females and sorted them
 isGirl list = sortBy (\x y = snd3 x < snd3 y) [a\\a<-list | thd3 a == "female"]
 
 //Start = isGirl [("Hossam", 19, "male"), ("Nikola", 21, "male"), ("Tringa", 18, "female"), ("Nani", 17, "female")]// [("Nani",17,"female"),("Tringa",18,"female")]
 
-isGuy :: [(String,Int,String)] -> [(String,Int,String)]
+isGuy :: [(String,Int,String)] -> [(String,Int,String)]//separated only males and sorted them
 isGuy list = sortBy (\x y = snd3 x < snd3 y ) [a\\a<-list | thd3 a == "male"]
 
 //Start = isGuy [("Hossam", 19, "male"), ("Nikola", 21, "male"), ("Tringa", 18, "female"), ("Nani", 17, "female")] // [("Hossam",19,"male"),("Nikola",21,"male")]
-
+findYounger :: [(String,Int,String)] -> [String] //basically added only the first tuple of the head of each list together.
 findYounger list = [fst3 (hd(isGuy list))] ++ [fst3(hd(isGirl list))]
 
 //Start = findYounger [("Hossam", 19, "male"), ("Nikola", 21, "male"), ("Tringa", 18, "female"), ("Nani", 17, "female")]//["Hossam","Nani"]
@@ -109,16 +108,3 @@ Traux x a b
 //Start = isTringularNum 5 // (False,-1)
 //Start = isTringularNum 10 // (True,4)
 //Start = isTringularNum 666 // (True,36)
-
-
-
-
-
-
-
-
-
-
-
-
-
