@@ -24,11 +24,16 @@ int ans;
 for (int i=1;i<4;++i)
 {
             if (Num[max]>Num[i])
-                ans=Num[max];
-            else
-                max++;                            
+               { 
+                   ans=Num[max];
+               }            
+            else 
+                {   max=i;
+                    ans=Num[max];                            
+                }
 }
-ans = Num[max];
+
+cout <<ans<<endl;
     return ans;
 }
 int main(){
@@ -36,7 +41,7 @@ int main(){
 int a,b,c,d;
 cin>>a>>b>>c>>d;
 int ans = max_of_four(a,b,c,d);
-cout <<ans<<endl;
+
 
 
 /*
