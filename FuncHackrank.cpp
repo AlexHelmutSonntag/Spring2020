@@ -32,16 +32,16 @@ for (int i=1;i<4;++i)
                     ans=Num[max];                            
                 }
 }
-
 cout <<ans<<endl;
     return ans;
 }
 int main(){
 
+/*
 int a,b,c,d;
 cin>>a>>b>>c>>d;
 int ans = max_of_four(a,b,c,d);
-
+*/
 
 
 /*
@@ -53,7 +53,7 @@ int sum = sum_of_four(a,b,c,d);
 
 cout <<sum<<endl;
 */
-
+//Solution to a for loop question on Hackerrank
 
 
 /*
@@ -66,18 +66,6 @@ for (int i=a;i<=b;i++)
           cout<<( (i<=9)?c[i] : ((i%2==0)?"even":"odd") )<<endl;
 }
 */
-
-
-
-
-
-
-
-
-
-
-
-
 
 return 0 ;
 }
