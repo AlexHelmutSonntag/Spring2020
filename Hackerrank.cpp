@@ -18,23 +18,26 @@ int max_of_four(int a,int b,int c,int d){
 
 
 int Num[]={a,b,c,d};
-int ans = Num[0];
-
+int max = 0;
+int ans;
 
 for (int i=1;i<4;++i)
 {
-            if (Num[i]>Num[i-1])
-                 ans = Num[i];
+            if (Num[max]>Num[i])
+                ans=Num[max];
+            else
+                max++;                            
 }
+ans = Num[max];
     return ans;
 }
 int main(){
-/*
+
 int a,b,c,d;
 cin>>a>>b>>c>>d;
 int ans = max_of_four(a,b,c,d);
 cout <<ans<<endl;
-*/
+
 
 /*
 int a,b,c,d;
