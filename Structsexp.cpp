@@ -3,8 +3,13 @@
 
 using namespace std;
 
-//This file is about structures in C++  made on 25.04.2020
+//This file is about structures in C++ made on 25.04.2020
 
+struct person{
+
+    string name;
+    int crimes;
+};// used at the bottom of the code
 struct Car {
 
     string brand;
@@ -111,6 +116,27 @@ yearsOfCars.push_back(BMW.year);
 cout<< yearsOfCars[1]<<endl;//1986 and this is how you add value in a vector.
 
 
+//An old task about crimes solved using structs.
+int n;
+
+cin >> n;
+person lad[n];
+
+for (int i=0;i<n;i++)
+{
+        cin >>lad[i].name;
+        cin >>lad[i].crimes;     
+}
+
+vector<person> list;
+for (int i=0;i<n;i++)
+{
+    if (lad[i].crimes >= 3)
+       { list.push_back(lad[i]);}
+                                    
+}       
+
+cout << list.size()<<endl;
 
 
 
