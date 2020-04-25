@@ -14,16 +14,16 @@ void(update(int *anyname,int *anyname2))//these two variables are pointers of va
 
 int main(){
 
-int n,q;
-cin >> n >> q;
-vector< vector<int> > a(n);
+int rows,q;
+cin >> rows >> q;//n is how many rows
+vector< vector<int> > a(rows);
 
 // input each array
-for (int i=0;i<n;i++) {
-    int k;
-    cin >> k;
+for (int i=0;i<rows;i++) {
+    int columns;
+    cin >> columns;
 
-    for (int j=0;j<k;j++) {
+    for (int j=0;j<columns;j++) {
         int data;
         cin >> data;
         a[i].push_back(data);
