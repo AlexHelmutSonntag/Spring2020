@@ -223,11 +223,26 @@ where
 
 
 //Start = Evan < Jack //False// this tests if the year of Jack's birthday is bigger than the year of Evan which is false
+//Bonus tip in Clean : If you define an instance for '<', the 'Ord' class will automatically define and create for you the > , >= , <= instances
+//If you define an instance for '==', the 'Eq' class will automatically define and create for you the <> instances
+
 
 
 ListPeople = [Evan,Jack]
-
+//Start = sort ListPeople //[(Person "Jack" [] (Date 1999 Jan 24) False),(Person "Evan" ["Red","Blue","Green"] (Date 2000 Apr 1) True)]
+//For some reason Jack is sorted and comes before Evan
 //Start = isMember Evan ListPeople //True yes, Evan is in the list of people
 
-Start = sort ListPeople //[(Person "Jack" [] (Date 1999 Jan 24) False),(Person "Evan" ["Red","Blue","Green"] (Date 2000 Apr 1) True)]
-//For some reason Jack is sorted and comes before Evan
+
+makeBabies :: Person Int -> [Person]
+makeBabies p=: {name = n} x = [{p&name = n +++(toString j)}\\j<-[1..x]]
+//This basically made a list of Numbered evans where it added j which was an int and converted it to a string and then contcatenated it to the clone of the name from the p
+//Start = makeBabies Evan 10//[(Person "Evan1" ["Red","Blue","Green"] (Date 2000 Apr 1) True),(Person "Evan2" ["Red","Blue","Green"] (Date 2000 Apr 1) True),(Person "Evan3" ["Red","Blue","Green"]
+//(Date 2000 Apr 1) True),(Person "Evan4" ["Red","Blue","Green"] (Date 2000 Apr 1) True),(Person "Evan5" ["Red","Blue","Green"] (Date 2000 Apr 1) True),(Person "Evan6"
+//["Red","Blue","Green"] (Date 2000 Apr 1) True),(Person "Evan7" ["Red","Blue","Green"] (Date 2000 Apr 1) True),(Person "Evan8" ["Red","Blue","Green"] (Date 2000 Apr 1) True),(Person "Evan9" ["Red","Blue","Green"] (Date 2000 Apr 1) True),(Person "Evan10" ["Red","Blue","Green"] (Date 2000 Apr 1) True)]
+
+//Bonus question
+func :: (Int,Int,Int) -> ((Int,Int,Int),Int)
+func t=: (a,b,c) = (t,a+b+c)
+
+Start = func (1,2,3)//((1,2,3),6)
