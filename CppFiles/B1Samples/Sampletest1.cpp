@@ -7,18 +7,16 @@ using namespace std;
 
 // Aly Elalwany WGL13Q
 
-/*Input : 5
-          30 25
-          25 20
-          27 18
-          30 20
-          24 22
+/*
+Input : 6 
+          30 25 5 
+          25 20 5
+          27 18 9
+          30 20 10
+          24 22 2
 Output : 2
          5
          2
-
-
-
 
 */
 struct temp{
@@ -51,7 +49,9 @@ OutDays[1]= 1;
    else if((Days[i].Maxt-Days[i].Mint)> MaxDif)
     {
 
+        NCnt=1;
         OutDays[1] =i;
+
         MaxDif = Days[i].Maxt-Days[i].Mint;
 
     }
@@ -63,6 +63,13 @@ OutDays[1]= 1;
         cout<<OutDays[i]<<endl;
 
     }
+
+
+
+
+
+
+
 
 
 
