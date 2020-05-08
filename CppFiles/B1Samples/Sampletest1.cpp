@@ -8,7 +8,7 @@ using namespace std;
 // Aly Elalwany WGL13Q
 
 /*
-Input : 6 
+Input : 5
           30 25 5 
           25 20 5
           27 18 9
@@ -63,15 +63,6 @@ OutDays[1]= 1;
         cout<<OutDays[i]<<endl;
 
     }
-
-
-
-
-
-
-
-
-
 
     return 0;
 }
