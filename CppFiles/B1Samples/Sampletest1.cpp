@@ -7,7 +7,7 @@ using namespace std;
 
 // Aly Elalwany WGL13Q
 
-/*Input : 6 
+/*Input : 5
           30 25
           25 20
           27 18
