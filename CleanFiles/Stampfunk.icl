@@ -7,16 +7,6 @@ isPrime :: Int -> Bool
 isPrime x = and[x rem n <> 0\\n<- [2..(x-1)]]
 
 
-//primeFactors
-
-primeFactors :: Int -> [Int]
-primeFactors n = [n \\ x<-[2..n] | isPrime x && n rem x == 0]
-
-Start = primeFactors 17
-
-
-
-
 //fib generator
 
 fib :: Int -> Int
@@ -65,7 +55,7 @@ Round x
 |otherwise = (toInt x)
 
 
-Start = Negative -12.5// 0.5
+// Start = Negative -12.552// 0.5
 
 //Start = Decimalpart 12.5 //0.5
 
@@ -76,51 +66,6 @@ Numlist 0 = []
 Numlist x =  Numlist (x / 10) ++ [x rem 10] 
 
 //Start = Numlist 54321 // [5,4,3,2,1]
-
-// Real no. Negative checker.
-isNegative :: Real -> Bool
-isNegative x
-| x < 0.0 = True
-= False
-
-// Real no. Positive checker.
-isPositive :: Real -> Bool
-isPositive x
-| x >= 0.0 = True
-= False
-
-//Start = isPositive 5.0// True
-
-// function that takes only positive numbers in a list.
-TakePositive :: [Real] -> [Real]
-TakePositive list = [i\\i<-list | isPositive i]
-
-//Start = TakePositive [1.0,-1.0,2.3,-3.9] // [1.0,2.3]
-
-// a function that does square root to a real no.
-root :: Real -> Real
-root x 
-| x == 0.0 = 0.0
-| x < 0.0 = abort "Invalid" 
-= x^(1.0/2.0)
-
-//Start = root 20.0//4.47213595499958
-
-//A function that square roots all the positive real no.s in a list.
-
-Square :: [Real] -> [Real]
-Square list = map root a 
-where
-    a = (filter (\x = isPositive x ) list)
-
-
-Start = Square [16.0,49.0,69.0,-120.0,1.0,-1.0,2.3,-3.9]//[1,1.51657508881031]
-
-
-
-/*
------------------------------------------------------------------------------------------------------------------------------
-*/
 //Sorting
 
 //qsort 
@@ -156,3 +101,151 @@ where
     len = length xs
 
 //Start = msort [2,9,5,1,3,8]//[1,2,3,5,8,9]
+
+/*---------------------------------------*/
+//Instances 
+
+
+instance + (a,b) | + a & + b
+where
+    (+) (x1,y1) (x2,y2) = (x1+x2, y1+y2)
+
+
+// Start  = (1,2) + (1,2)
+
+instance - (a,b) | - a & - b
+where
+    (-) (x1,y1) (x2,y2) = (x1-x2, y1-y2)
+
+// Start = (1,2) - (1,1)
+
+instance * (a,b) | * a & * b
+where
+    (*) (x1,y1) (x2,y2) = (x1*x2, y1*y2)
+
+// Start = (1,2) * (1,2)
+
+
+
+instance / (a,b) | / a & / b
+where
+    (/) (x1,y1) (x2,y2) = (x1/x2, y1/y2)
+
+// Start = (1,2) / (1,2)
+
+// ==, < and > are predefined for tuples of 3
+
+// Start  = (1,2,3) == (1,2,3)
+// Start  = (1,2,3) < (1,2,4)
+
+// + and - for tuples of 3
+instance + (a,b,c) | + a & + b & + c
+where
+    (+) (x1,y1,z1) (x2,y2,z2) = (x1+x2, y1+y2,z1+z2)
+
+// Start = (1,2,3) + (1,2,3)
+
+instance - (a,b,c) | - a & - b & - c
+where
+    (-) (x1,y1,z1) (x2,y2,z2) = (x1-x2, y1-y2,z1-z2)
+
+// Start = (1,2,4) - (1,2,3)
+
+
+/* for Strings */
+
+instance + String
+where
+    (+) s1 s2 = s1 +++ s2
+// Start  = "Hello" + " Friend" //"Hello Friend"
+
+
+
+
+/*--------------------------------*/
+//Arrays 
+
+
+isPal:: String -> Bool
+isPal x = l == reverse l 
+where
+    l = [e\\e<-:x]
+    
+
+palArr :: {String} -> {String}
+palArr myArr = {elem\\elem <-: myArr | isPal elem }
+
+
+
+reverseString :: String -> String
+reverseString x = result
+where
+    list = [ a\\a<-:x ]
+    m = reverse list
+    result = {a\\a<-m}
+    
+
+MyArray :: {Int}
+MyArray = {1,3,5,7,9}
+
+MapArrays :: (a->b) {a} -> {b} 
+MapArrays f a = {f e \\ e<-:a}
+
+// Start = MapArrays (\x=x*2) {1,2,3,4}
+// Start = MapArrays inc MyArray // {2,4,6,8,10}
+
+
+
+/*---------------------------------------------------*/
+//Records
+
+
+
+:: Person = { name :: String, 
+           birthdate :: (Int,Int,Int), 
+           fpprogrammer :: Bool}
+
+
+ChangeName :: Person String -> Person
+ChangeName p=:{ name = n} s = {p&name = n+++s}
+
+// Start = ChangeName {name = "XY" ,birthdate= (1,1,2000), fpprogrammer = True } "Alex"
+
+
+:: Date = { year :: Int,  month :: Int, day :: Int}
+
+date1 = {year = 2000, month=1, day=3}
+date2 = {year = 2001, month=1, day=4}
+date3 = {year = 2001, month=2, day=3}
+date4 = {year = 2001, month=2, day=4}
+
+instance == Date
+where
+    (==) { day = d1, month = m1, year = y1}{ day = d2, month = m2, year = y2} = and[d1==d2,m1==m2,y1==y2]
+
+// Start = isMember daya listodays // True
+
+instance < Date
+where
+    (<){ day = d1, month = m1, year = y1}{ day = d2, month = m2, year = y2} = or[y1<y2,y1==y2&&m1<m2,y1==y2&&m1==m2&&d1<d2]
+//Now we can sort the list of dates due to having the < instance 
+
+// Start = date2 < date3
+
+
+instance toString Date
+where
+    toString {year=y, month=m, day=d} = "Year=" +++ toString y +++ " Month=" +++ toString m +++ " Day=" +++ toString d
+
+
+// Start = toString date3//"Year=2001 Month=2 Day=3"
+:: Tree a = Node a (Tree a) (Tree a) | Leaf
+
+dateTree2 = Node date3 (Node date1 Leaf (Node date2 Leaf Leaf)) (Node date4 Leaf Leaf)
+
+
+earliestDate :: (Tree Date) -> String
+earliestDate (Node x Leaf _) = toString x
+earliestDate (Node _ l _) = earliestDate l 
+
+// Start = earliestDate dateTree2 // "Year=2000 Month=1 Day=3"
