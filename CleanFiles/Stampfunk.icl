@@ -249,3 +249,73 @@ earliestDate (Node x Leaf _) = toString x
 earliestDate (Node _ l _) = earliestDate l 
 
 // Start = earliestDate dateTree2 // "Year=2000 Month=1 Day=3"
+
+
+:: Q = {nom :: Int, den :: Int}
+
+simplify :: Q -> Q
+simplify {nom=n,den=d}
+| d == 0 = abort "denominator is 0"
+| d < 0 =  {nom = ~n/g , den = ~d/g}
+| otherwise = {nom = n/g , den = d/g}
+where
+	g = gcmd n d 
+
+gcmd:: Int Int -> Int 
+gcmd x y = gcdnat (abs x) (abs y)
+where
+	gcdnat x 0 = x 
+	gcdnat x y = gcdnat y (x rem y)
+
+
+mkQ :: Int Int -> Q 
+mkQ n d = simplify {nom=n,den = d}
+
+// Start = mkQ 36 -4
+instance / Q 
+where
+    (/) x y = simplify{nom=x.nom *y.den, den =x.den* y.nom}
+
+fracDivision :: Q Q -> Q
+fracDivision a b = a/b
+
+// Start = {nom=5, den=1} / {nom=6, den=5}
+// Start = fracDivision {nom=10, den=2} {nom=3, den=4} //(Q 20 3)
+// Start = fracDivision {nom=0, den=2} {nom=100, den=4} //{nom=0, den=1}
+// Start = fracDivision {nom=15, den=2} {nom=3, den=12} //{nom=30, den=1}
+
+instance + Q 
+where
+    (+) {nom =n1,den = d1} {nom = n2, den = d2} = {nom = n1*d2+ n2*d1, den = d1*d2}
+
+// Start = fourth + fifth// (Q 9 20)
+
+instance zero Q
+where
+    zero = {nom = 0,den = 1}
+
+
+
+sumTree :: (Tree Q )-> Q
+sumTree Leaf = zero
+sumTree (Node x l r) = sumTree l + x + sumTree r
+
+
+instance == Q 
+where
+    (==) {nom =n1,den = d1} {nom = n2, den = d2} = n1*d2==n2*d1
+
+instance < Q 
+where
+    (<) {nom =n1,den = d1} {nom = n2, den = d2} = n1*d2 <n2*d1 
+
+checkTree :: (Tree Q) -> Bool
+checkTree t = l == sort l
+where
+    l = TreetoList t
+
+
+TreetoList :: (Tree a ) -> [a]
+TreetoList Leaf = []
+TreetoList (Node x l r) = TreetoList l ++ [x] ++ TreetoList r
+
