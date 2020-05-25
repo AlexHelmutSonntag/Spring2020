@@ -21,6 +21,13 @@ getNode :: (Tree a) -> a
 getNode (Node x l r) = x
 
 
+addNode :: (Tree Int) Int -> (Tree Int)
+addNode Leaf x = Node x Leaf Leaf
+addNode (Node t l r) x
+| x == t = Node t l r
+| x < t = (Node t (addNode l x) r)
+| x > t = (Node t l (addNode r x))
+
 isLeaf :: (Tree a) -> Bool
 isLeaf Leaf = True
 isLeaf _ = False
@@ -48,7 +55,14 @@ DiffDepth x = (snd (hd (reverse(DepTree x))) ) - (snd (last(reverse(DepTree x)))
 smallTree :: Tree Int
 smallTree = Node 8 (Node 6 (Node 5 Leaf Leaf)(Node 7 Leaf Leaf)) (Node 12 (Node 11 Leaf Leaf) (Node 14 (Node 13 Leaf Leaf) (Node 15 Leaf Leaf)))
 
+//removes the node from every tree
+RemoveNode:: Int (Tree Int) -> (Tree Int) 
+RemoveNode num Leaf = Leaf
+RemoveNode num (Node x l r)
+| num == x = (Node 0 (RemoveNode num l) (RemoveNode num r)) 
+= (Node x (RemoveNode num l) (RemoveNode num r)) 
 
+// Start = RemoveNode 8 smallTree
 
 DivideTree :: (Tree a) -> [(Tree a)] | Eq, Ord a 
 DivideTree Leaf = []
@@ -79,18 +93,19 @@ reverseTree :: (Tree a) -> (Tree a)
 reverseTree Leaf = Leaf
 reverseTree (Node x l r) = (Node x (reverseTree r) (reverseTree l))
 
+
 // Start = reverseTree smallTree
 // Start = smallTree
 
 
-ListoKids :: a (Tree a) -> [Tree a] | Eq, Ord a 
-ListoKids n Leaf = []
-ListoKids n (Node x l r)
+Listofkids :: a (Tree a) -> [Tree a] | Eq, Ord a 
+Listofkids n Leaf = []
+Listofkids n (Node x l r)
 | n == x =  [l] ++ [r]
-| n < x = ListoKids n l
-| n > x = ListoKids n r 
+| n < x = Listofkids n l
+| n > x = Listofkids n r 
 
-// Start = ListoKids 14 smallTree
+// Start = Listofkids 14 smallTree
 
 TreetoList :: (Tree a ) -> [a]
 TreetoList Leaf = []
@@ -121,3 +136,33 @@ where
 
 // Start = levelBalance [5,2,4,9,6,8,7,1,3]
 
+
+
+isPrime :: Int -> Bool
+isPrime x = and[x rem n <> 0\\n<- [2..(x-1)]]
+
+getChildren :: (Tree Int) -> [Int]
+getChildren Leaf = []
+getChildren (Node x Leaf Leaf) = []
+getChildren (Node _ (Node a _ _) Leaf ) = [a] 
+getChildren (Node _ Leaf (Node b _ _) ) = [b] 
+getChildren (Node _ (Node a _ _)(Node b _ _)) = [a,b] 
+
+// Start = getChildren tree1
+
+PrimeChildren :: (Tree Int) -> [Int]
+PrimeChildren Leaf = []
+PrimeChildren t
+| a =  PrimeChildren l ++ [x] ++ PrimeChildren r
+= PrimeChildren l ++ PrimeChildren r
+where
+    a = or(map isPrime (getChildren t))
+    (Node x l r) = t 
+
+// Start = PrimeChildren tree1 
+// tree1 = Node 10 (Node 7 (Node 3 Leaf Leaf) (Node 15 Leaf Leaf)) (Node 5 Leaf (Node 10 Leaf Leaf))
+
+//Start = primeChildren tree1 //[10,7]
+//Start = primeChildren tree2 //[0,4,8]
+//Start = primeChildren unitTree //[]
+//Start = primeChildren noTree //[]
