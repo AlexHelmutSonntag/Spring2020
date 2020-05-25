@@ -319,3 +319,35 @@ TreetoList :: (Tree a ) -> [a]
 TreetoList Leaf = []
 TreetoList (Node x l r) = TreetoList l ++ [x] ++ TreetoList r
 
+/*Common questions for records*/
+
+
+Gpa :: Student -> Real
+Gpa {grades=g} = Average
+where
+    list = [e\\e<-:g]
+    Average = (toReal(sum list)) / (toReal (length list)) 
+
+
+UniGpa :: University -> [Real]
+UniGpa {students = list} = map Gpa list
+
+
+
+bettershorterThan6::University->{String}
+bettershorterThan6 uni = {c\\c<-list}
+where
+	list=[x.studentName\\x<-uni.students | size (x.studentName)<6] ++ [x.tname\\x<-uni.teachers | size(x.tname)<6]
+
+
+
+
+
+
+instance toString Teacher
+where
+    toString teacher = teacher.tname
+
+instance toString Student
+where
+    toString student = student.studentName +++ " " +++ toString (Gpa student) +++ " " +++  toString student.favoriteTeacher
