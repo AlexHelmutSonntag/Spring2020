@@ -339,7 +339,16 @@ bettershorterThan6 uni = {c\\c<-list}
 where
 	list=[x.studentName\\x<-uni.students | size (x.studentName)<6] ++ [x.tname\\x<-uni.teachers | size(x.tname)<6]
 
-
+f7 :: {Int} -> Bool
+f7 x = result
+where
+    toList :: {Int}->[Int]
+    toList a = [ z \\ z <-: a ]
+    checkOnePlz :: Int [Int] -> Bool
+    checkOnePlz x list = length(filter ((==) x) list) >= 2
+    result = and(map (\elem = checkOnePlz elem listarr) listarr)
+    where
+        listarr = toList x
 
 
 
